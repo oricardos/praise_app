@@ -1,22 +1,65 @@
 {%extends 'base.html'%}
 {%load static%}
 
+{%block title%}
+    <title>Praise App</title>
+{%endblock%}
+
 {%block content%}
     <div class="container">
         {%include 'partials/_header.html'%}
     
-        <table>
-            <tr class="center">                					
-              <th>Nome</th>
-              <th>Letra</th>
-              <th>Cifra</th>
-              <th>Ver mais</th>
-            </tr>
-            <tr class="center">
-                {% for key, song_data in songs_datas.items%}
-                <td>{{ song_data }}</td>
-                {%endfor%}
-            </tr>
+        <table id="songs_table" class="row-border hover stripe" style="width:100%">
+            <thead>
+                <tr>                					
+                    <th>Nome</th>
+                    <th>Letra</th>
+                    <th>Cifra</th>
+                    <th>Ver mais</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if songs %}
+                    {% for song in songs %}
+                    <tr>
+                        <td>{{ song.song_name }}</td>
+                        <td class="praise__lyric">{{ song.lyric }}</td>
+                        <td><a href="{{ song.cipher }}" target="_blank">Ver Cifra</a></td>
+                        <td><a href="{% url 'song' song.id %}"><i class="fas fa-eye"></i></a></td>
+                    </tr>
+                    {%endfor%}
+                {% else %}
+                <tr>
+                    <td>there is no data to display</td>
+                </tr>
+                {% endif %}
+            </tbody>
+            <tfoot>
+                <tr>                					
+                    <th>Nome</th>
+                    <th>Letra</th>
+                    <th>Cifra</th>
+                    <th>Ver mais</th>
+                </tr>
+            </tfoot>
         </table>
     </div>
+{%endblock%}
+
+{%block script%}
+    <script>
+        const limitLyric = document.querySelectorAll('.praise__lyric');
+
+        limitLyric.forEach(lyric => {
+            const text = lyric.innerHTML;
+            const resumeText = text.slice(0, 50)+'...';
+
+            lyric.innerHTML = resumeText;
+        });
+
+
+        $(document).ready(function () {
+            $('#songs_table').DataTable();
+        });
+    </script>
 {%endblock%}

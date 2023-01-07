@@ -1,8 +1,37 @@
 {%extends 'base.html'%}
 {%load static%}
 
+{%block title%}
+    <title>{{song.song_name}} - Praise App</title>
+{%endblock%}
+
 {%block content%}
     <div class="container">
-        <h1>song</h1>
+        <span>added {{song.date_posted}}</span>
+        <h1>{{song.song_name}}</h1>
+        <h3>{{song.author}}</h3>
+        <h6>{{song.matters}}</h6>
+        <p>{{song.lyric}}</p>
+        <p>{{song.tone}}</p>
+        <a href="{{song.cipher}}" target="_blank">Ver cifra</a>
+        <p>{{song.bpm}}</p>
+        <a href="{{song.video}}" target="_blank">Ver vídeo</a>
+
+        <button>
+            <a href="{{song.spotify}}" target="_blank">
+                <i class="fab fa-spotify"></i>
+                Ouvir no Spotify
+            </a>
+        </button>
+
+        <button>
+            <a href="{{song.ytmusic}}" target="_blank">
+                <i class="fab fa-youtube"></i>
+                Ouvir no YouTube Music
+            </a>
+        </button>
+
+       
+
     </div>
 {%endblock%}
