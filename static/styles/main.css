@@ -10,9 +10,16 @@ body {
 
 :root {
     /* colors */
-    --black: #121214;
-    --white: #ffffff;
+    --black: #020100;
+    --white: #FDFFFC;
     --gray: #808080;
+
+    --primary: #1982C4;
+    --success: #8AC926;
+
+    --warning: #F1D302;
+    --error: #FDFFFC;
+
 
     /* font-sizes */
     --text-xs: 0.75rem; /* 12px */
@@ -23,7 +30,7 @@ body {
     --text-2xl: 1.5rem; /* 24px */
     --text-3xl: 1.875rem; /* 30px */
     --text-4xl: 2.25rem; /* 36px */
-    --text-5xl: 3rem; /* 40px */
+    --text-5xl: 4rem; /* 40px */
     
     /* font-weight */
     --normal: 400;

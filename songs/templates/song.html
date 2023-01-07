@@ -6,32 +6,112 @@
 {%endblock%}
 
 {%block content%}
+
+    <input type="hidden" name="video" class="song-video" value="{{song.video}}">
+    <input type="hidden" name="video" class="song-lyric" value="{{song.lyric}}">
+
     <div class="container">
-        <span>added {{song.date_posted}}</span>
-        <h1>{{song.song_name}}</h1>
-        <h3>{{song.author}}</h3>
-        <h6>{{song.matters}}</h6>
-        <p>{{song.lyric}}</p>
-        <p>{{song.tone}}</p>
-        <a href="{{song.cipher}}" target="_blank">Ver cifra</a>
-        <p>{{song.bpm}}</p>
-        <a href="{{song.video}}" target="_blank">Ver vídeo</a>
+        {%include 'partials/_header.html'%}
 
-        <button>
-            <a href="{{song.spotify}}" target="_blank">
-                <i class="fab fa-spotify"></i>
-                Ouvir no Spotify
-            </a>
-        </button>
+        <header class="praise__header-song">
+            <img src="{{song.featured_image}}" alt="image_song" class="praise__featured-image">
+            <div class="praise__song-info">
+                <div class="praise__song-info-header">
+                    <h6 class="praise__matters">{{song.matters}}</h6>
+                    <h1 class="praise__name">{{song.song_name}}</h1>
+                </div>
+                <h3 class="praise__author">{{song.author}}</h3>
+            </div>
+        </header>
 
-        <button>
-            <a href="{{song.ytmusic}}" target="_blank">
-                <i class="fab fa-youtube"></i>
-                Ouvir no YouTube Music
-            </a>
-        </button>
+        <hr>
 
-       
+        <main>
+            <div class="praise__lyric">
+                <h2 class="praise__section-title">Letra</h2>
+                <span class="letra"></p>
+            </div>
 
+            <div class="praise__instrumental-side">
+                <div class="praise__instrumental">
+                    <h2 class="praise__section-title">Instrumental</h2>
+                    <div class="praise__tone">
+                        <span>Tom:</span>
+                        <p class="praise__tone-display">{{song.tone}}</p>
+                        <a href="{{song.cipher}}" target="_blank" class="praise__see-cipher">Ver cifra <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+        
+                    <div class="praise__tone">
+                        <span>BPM:</span>
+                        <p>{{song.bpm}}</p>
+                    </div>
+                </div>
+                
+                <hr>
+        
+                <div class="praise__youtube-video">
+                    <h2 class="praise__section-title">YouTube</h2>
+                    <iframe 
+                        class="youtube-embeded"
+                        width="560" 
+                        src=""
+                        height="315" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen></iframe>
+                </div>
+                
+                <hr>
+        
+                <div class="praise__listen">
+                        <a href="{{song.spotify}}" target="_blank" class="praise__spotify">
+                            <i class="fab fa-spotify"></i>
+                            Ouvir no Spotify
+                        </a>
+        
+                        <a href="{{song.ytmusic}}" target="_blank" class="praise__youtube">
+                            <i class="fab fa-youtube"></i>
+                            Ouvir no YouTube Music
+                        </a>
+                        
+                </div>
+            </div>
+
+        </main>
     </div>
+{%endblock%}
+
+{%block script%}
+    <script>
+        const getLyric = document.querySelector('.song-lyric').value;
+        const lyrics = getLyric.replace(/(\r\n|\r|\n)/g, '<br>');
+        const letra = document.querySelector('.letra');
+
+        letra.innerHTML = lyrics;
+    </script>
+
+    <script>
+        const urlVideo = document.querySelector('.song-video').value;
+        const youtubeEmbeded = document.querySelector('.youtube-embeded');
+
+        function YouTubeGetID(url){
+            var ID = '';
+            url = url.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+            if(url[2] !== undefined) {
+                ID = url[2].split(/[^0-9a-z_\-]/i);
+                ID = ID[0];
+
+                youtubeEmbeded.src = `https://www.youtube.com/embed/${ID}`;
+
+                console.log(ID);
+            }
+            else {
+                ID = url;
+            }
+                return ID;
+        }
+
+        YouTubeGetID(urlVideo);
+    </script>
 {%endblock%}
