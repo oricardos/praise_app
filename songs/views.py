@@ -1,5 +1,22 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
+songs_datas = {
+    'song_name': '',
+    'lyric': '',
+    'tone': '',
+    'cipher': '',
+    'bpm': '',
+    'video': '',
+    'author': '',
+    'spotify': '',
+    'ytmusic': '',
+    'deezer': '',
+    'amazon': '',
+    'matters': ''
+    }
 
 def index(request):
-    return HttpResponse('<h1>deu certo!</h1>')
+    return render(request, 'index.html', songs_datas)
+
+def song(request):
+    return render(request, 'song.html')

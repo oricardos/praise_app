@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block content%}
+    <div class="container">
+        {%include 'partials/_header.html'%}
+    
+        <table>
+            <tr class="center">                					
+              <th>Nome</th>
+              <th>Letra</th>
+              <th>Cifra</th>
+              <th>Ver mais</th>
+            </tr>
+            <tr class="center">
+                {% for key, song_data in songs_datas.items%}
+                <td>{{ song_data }}</td>
+                {%endfor%}
+            </tr>
+        </table>
+    </div>
+{%endblock%}
