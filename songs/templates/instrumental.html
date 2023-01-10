@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block title%}
+    <title>{{song.song_name}} - Praise App</title>
+{%endblock%}
+
+{%block content%}
+<div class="container">
+    {%include 'partials/_header_info.html'%}
+
+
+    <a href="{{song.instrumental_file.url}}" download target="_blank"> download</a><br/>
+
+    <a href="{{song.acoustic_guitar}}"  target="_blank"> ir para link</a><br/>
+
+    <a href="{{song.electric_guitar}}" target="_blank"> ir para link</a><br/>
+
+    <a href="{{song.keyboard}}" target="_blank"> ir para link</a><br/>
+
+    <a href="{{song.bass}}" target="_blank"> ir para link</a><br/>
+
+    <a href="{{song.drums}}" target="_blank"> ir para link</a><br/>
+
+    <p>{{song.note}}</p>
+</div>
+
+{%endblock%}

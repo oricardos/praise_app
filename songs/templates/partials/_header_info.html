@@ -1,0 +1,14 @@
+{%include 'partials/_header.html'%}
+
+<header class="praise__header-song">
+    <img src="{{song.featured_image}}" alt="image_song" class="praise__featured-image">
+    <div class="praise__song-info">
+        <div class="praise__song-info-header">
+            <h6 class="praise__author">{{song.artist}}</h6>
+            <h1 class="praise__name">{{song.song_name}}</h1>
+        </div>
+        <h3 class="praise__matters">{{song.matters}}</h3>
+    </div>
+</header>
+
+<hr>

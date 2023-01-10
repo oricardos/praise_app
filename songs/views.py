@@ -9,6 +9,7 @@ def index(request):
     }
     return render(request, 'index.html', songs)
 
+# MÚSICAS
 def song(request, song_id):
     song = get_object_or_404(Song, pk=song_id)
 
@@ -17,3 +18,23 @@ def song(request, song_id):
     }
 
     return render(request, 'song.html', song_to_display)
+
+# VOZES
+def voice(request, song_id):
+    song = get_object_or_404(Song, pk=song_id)
+
+    song_to_display = {
+        'song': song
+    }
+
+    return render(request, 'voice.html', song_to_display)
+
+# INSTRUMENTAL
+def instrumental(request, song_id):
+    song = get_object_or_404(Song, pk=song_id)
+
+    song_to_display = {
+        'song': song
+    }
+
+    return render(request, 'instrumental.html', song_to_display)

@@ -13,9 +13,9 @@
             <thead>
                 <tr>                					
                     <th>Nome</th>
-                    <th>Letra</th>
-                    <th>Cifra</th>
-                    <th>Ver mais</th>
+                    <th>Voz</th>
+                    <th>Instrumental</th>
+                    <th>Ver tudo</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,8 +23,8 @@
                     {% for song in songs %}
                     <tr>
                         <td>{{ song.song_name }}</td>
-                        <td class="praise__lyric">{{ song.lyric }}</td>
-                        <td><a href="{{ song.cipher }}" target="_blank">Ver Cifra</a></td>
+                        <td><a href="{% url 'voice' song.id %}"><i class="fas fa-eye"></i></a></td>
+                        <td><a href="{% url 'instrumental' song.id %}"><i class="fas fa-eye"></i></a></td>
                         <td><a href="{% url 'song' song.id %}"><i class="fas fa-eye"></i></a></td>
                     </tr>
                     {%endfor%}
