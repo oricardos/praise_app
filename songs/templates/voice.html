@@ -6,8 +6,17 @@
 {%endblock%}
 
 {%block content%}
+<input type="hidden" name="video" class="song-lyric" value="{{song.lyric}}">
+
 <div class="container">
     {%include 'partials/_header_info.html'%}
+
+    <main>
+        <div class="praise__lyric">
+            <h2 class="praise__section-title">Letra</h2>
+            <span class="letra"></p>
+        </div>
+    </main>
 
 
     {% if song.voices%}
@@ -24,3 +33,14 @@
 </div>
 
 {%endblock%}
+
+{%block script%}
+    <script>
+        const getLyric = document.querySelector('.song-lyric').value;
+        const lyrics = getLyric.replace(/(\r\n|\r|\n)/g, '<br>');
+        const letra = document.querySelector('.letra');
+
+        letra.innerHTML = lyrics;
+    </script>
+
+    {%endblock%}
