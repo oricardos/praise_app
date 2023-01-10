@@ -12,4 +12,4 @@ class ListSongs(admin.ModelAdmin):
     list_per_page = 10
     # list_display_links = ('song_name') transforma uma informação em um link
 
-admin.site.register(Song, ListSongs)
+admin.site.register(Song, ListSongs) # sempre passar a classe aqui pra pegar filtro, busca e paginação...
