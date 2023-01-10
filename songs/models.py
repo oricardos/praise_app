@@ -19,6 +19,7 @@ class Song(models.Model):
     lyric = models.TextField()
     voices = models.CharField(max_length=200, blank=True)
     extra_voice = models.CharField(max_length=200, blank=True)
+    voice_file = models.ImageField(upload_to='images/voices/%d/%m/%Y/', blank=True)
     
     # INSTRUMENTOS
     tone = models.CharField(max_length=200)
@@ -30,6 +31,8 @@ class Song(models.Model):
     keyboard = models.CharField(max_length=200, blank=True)
     bass = models.CharField(max_length=200, blank=True)
     drums = models.CharField(max_length=200, blank=True)
+
+    instrumental_file = models.ImageField(upload_to='images/instrumental/%d/%m/%Y/', blank=True)
 
     date_posted = models.DateTimeField(default=datetime.now, blank=True) #se por algum motivo não conseguir pegar a data, pode ficar vazio
 
