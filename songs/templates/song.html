@@ -17,10 +17,10 @@
             <img src="{{song.featured_image}}" alt="image_song" class="praise__featured-image">
             <div class="praise__song-info">
                 <div class="praise__song-info-header">
-                    <h6 class="praise__matters">{{song.matters}}</h6>
+                    <h6 class="praise__matters">{{song.author}}</h6>
                     <h1 class="praise__name">{{song.song_name}}</h1>
                 </div>
-                <h3 class="praise__author">{{song.author}}</h3>
+                <h3 class="praise__author">{{song.matters}}</h3>
             </div>
         </header>
 
@@ -95,23 +95,32 @@
         const urlVideo = document.querySelector('.song-video').value;
         const youtubeEmbeded = document.querySelector('.youtube-embeded');
 
-        function YouTubeGetID(url){
-            var ID = '';
-            url = url.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-            if(url[2] !== undefined) {
-                ID = url[2].split(/[^0-9a-z_\-]/i);
-                ID = ID[0];
+        // function YouTubeGetID(url){
+        //     var ID = '';
+        //     url = url.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+        //     if(url[2] !== undefined) {
+        //         ID = url[2].split(/[^0-9a-z_\-]/i);
+        //         ID = ID[0];
 
-                youtubeEmbeded.src = `https://www.youtube.com/embed/${ID}`;
+        //         youtubeEmbeded.src = `https://www.youtube.com/embed/${ID}`;
 
-                console.log(ID);
-            }
-            else {
-                ID = url;
-            }
-                return ID;
+        //         console.log(ID);
+        //     }
+        //     else {
+        //         ID = url;
+        //     }
+        //         return ID;
+        // }
+
+        // YouTubeGetID(urlVideo);
+
+        function getYoutubeVideoId(url) {
+            const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regExp);
+            return match && match[2].length === 11 ? match[2] : null;
         }
 
-        YouTubeGetID(urlVideo);
+        const videoId = getYoutubeVideoId(urlVideo);
+        youtubeEmbeded.src = `https://www.youtube.com/embed/${videoId}`;
     </script>
 {%endblock%}

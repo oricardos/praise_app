@@ -15,5 +15,6 @@ class Song(models.Model):
     featured_image = models.CharField(default="", max_length=250)
     date_posted = models.DateTimeField(default=datetime.now, blank=True) #se por algum motivo não conseguir pegar a data, pode ficar vazio
 
+    # mostra o nome da música no admin
     def __str__(self):
         return self.song_name
