@@ -38,3 +38,18 @@ def instrumental(request, song_id):
     }
 
     return render(request, 'instrumental.html', song_to_display)
+
+# PESQUISA
+def search(request):
+    songs_datas_list = Song.objects.order_by('-song_name').filter(is_posted=True)
+
+    if 'search' in request.GET:
+        search_name = request.GET['search']
+        if search:
+            songs_datas_list = songs_datas_list.filter(song_name__icontains=search_name)
+
+    data = {
+        'songs': songs_datas_list
+    }
+
+    return render(request, 'search.html', data)
