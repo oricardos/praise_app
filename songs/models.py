@@ -4,6 +4,7 @@ from artists.models import Artist
 
 class Song(models.Model):
     #geral
+    is_posted = models.BooleanField(default=True)
     song_name = models.CharField(max_length=200)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     matters = models.CharField(max_length=200)
@@ -13,7 +14,6 @@ class Song(models.Model):
     ytmusic = models.CharField(max_length=200)
     featured_image = models.CharField(default="", max_length=250, blank=True)
     note = models.TextField(blank=True) #observações
-    date_posted = models.DateTimeField(default=datetime.now, blank=True) #se por algum motivo não conseguir pegar a data, pode ficar vazio
 
     #  VOZES
     lyric = models.TextField()
@@ -30,6 +30,8 @@ class Song(models.Model):
     keyboard = models.CharField(max_length=200, blank=True)
     bass = models.CharField(max_length=200, blank=True)
     drums = models.CharField(max_length=200, blank=True)
+
+    date_posted = models.DateTimeField(default=datetime.now, blank=True) #se por algum motivo não conseguir pegar a data, pode ficar vazio
 
     # mostra o nome da música no admin
     def __str__(self):
