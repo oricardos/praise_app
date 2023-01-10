@@ -1,6 +1,10 @@
 {%extends 'base.html'%}
 {%load static%}
 
+{%block style%}
+<link rel="stylesheet" href="{% static '/styles/voice.css' %}">
+{%endblock%}
+
 {%block title%}
     <title>{{song.song_name}} - Praise App</title>
 {%endblock%}
@@ -11,36 +15,79 @@
 <div class="container">
     {%include 'partials/_header_info.html'%}
 
-    <main>
-        <div class="praise__lyric">
+    <main class="praise__voice">
+        <div class="praise__voice-lyric">
             <h2 class="praise__section-title">Letra</h2>
-            <span class="letra"></p>
+            <span class="praise__voice-lyrics"></p>
+        </div>
+        <!-- inicio voices -->
+        <div class="praise__voice-infos">
+            <div>
+                <h4>Ouça</h4>
+                <div class="praise__listen">
+                    <a href="{{song.spotify}}" target="_blank" class="praise__spotify">
+                        <i class="fab fa-spotify"></i>
+                        Ouvir no Spotify
+                    </a>
+
+                    <a href="{{song.ytmusic}}" target="_blank" class="praise__youtube">
+                        <i class="fab fa-youtube"></i>
+                        Ouvir no YouTube Music
+                    </a>
+                </div>
+            </div>
+
+            <a href="" class="praise__voice-download"><i class="fas fa-download"></i>Baixar Letra</a>
+            
+            {% if song.voices %}
+            <div class="praise__voice-voices">
+                <input type="hidden" name="video" class="voices" value="{{song.voices}}">
+                <h4>Vozes</h4>
+                <iframe 
+                    class="youtube-embeded-voices"
+                    width="560" 
+                    src=""
+                    height="315" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen></iframe>
+            </div>
+            {% endif %}
+            <!-- fim voices -->
+
+             <!-- inicio extra-voices -->
+            {% if song.extra_voice %}
+            <div class="praise__voice-extra_voice">
+                <input type="hidden" name="video" class="extraVoices" value="{{song.extra_voice}}">
+                <h4>Extra</h4>
+                <iframe 
+                    class="youtube-embeded-extra_voice"
+                    width="560" 
+                    src=""
+                    height="315" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen></iframe>
+            </div>
+            {% endif %}
+
+            {% if song.note %}
+                <div class="praise__note">
+                    <h4>Observações:</h4>
+                    <p>{{song.note}}</p>
+                </div>
+            {%endif%}
         </div>
     </main>
-
-
-    {% if song.voices%}
-        <h4>Vozes</h4>
-        <a href="{{song.voices}}" target="_blank"> ir para link</a>
-    {% endif %}
-
-    {% if song.note%}
-        <h4>Observações:</h4>
-        <p>{{song.note}}</p>
-    {%endif%}
-
-    
 </div>
 
 {%endblock%}
 
 {%block script%}
     <script>
-        const getLyric = document.querySelector('.song-lyric').value;
-        const lyrics = getLyric.replace(/(\r\n|\r|\n)/g, '<br>');
-        const letra = document.querySelector('.letra');
-
-        letra.innerHTML = lyrics;
+       
     </script>
 
 {%endblock%}

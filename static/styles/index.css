@@ -115,6 +115,9 @@ main {
 .praise__listen a {
   padding: .5rem 1rem;
   border-radius: 1rem;
+  display: flex;
+  gap: var(--gap1);
+  align-items: center;
 }
 
 
