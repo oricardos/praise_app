@@ -1,6 +1,7 @@
 .praise__voice {
     display: flex;
     gap: var(--gap1);
+    padding-bottom: 5rem;
 }
 
 .praise__voice-infos,

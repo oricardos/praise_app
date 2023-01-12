@@ -1,6 +1,7 @@
 .praise__instrumental {
     display: flex;
     gap: var(--gap1);
+    padding-bottom: 5rem;
 }
 
 .praise__instrumental-infos {
