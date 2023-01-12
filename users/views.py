@@ -42,7 +42,7 @@ def login(request):
             user = auth.authenticate(request, username=name, password=password)
             if user is not None:
                 auth.login(request, user)
-        return redirect('dashboard')
+        return redirect('index') #se o login for realizado com sucesso, redireciona para tela de listagem / index
     return render(request, 'users/login.html')
 
 def logout(request):
