@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block style%}
+<link rel="stylesheet" href="{% static '/styles/new_song.css' %}">
+{%endblock%}
+
+{%block title%}
+    <title>{{song.song_name}} - Praise App</title>
+{%endblock%}
+
+{%block content%}
+<div class="container">
+    {%include 'partials/_header.html'%}
+
+    <h1>Nova Música</h1>
+</div>
+{%endblock%}

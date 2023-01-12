@@ -54,4 +54,7 @@ def dashboard(request):
   if request.user.is_authenticated:
     return render(request, 'users/dashboard.html')
   else: 
-    return redirect('login');
+    return redirect('login')
+
+def new_song(request):
+  return render(request, 'new_song.html')
