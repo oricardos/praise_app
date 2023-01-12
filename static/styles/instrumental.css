@@ -1,0 +1,10 @@
+.praise__instrumental {
+    display: flex;
+    gap: var(--gap1);
+}
+
+.praise__instrumental-infos {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap2);
+}
