@@ -10,6 +10,7 @@
     <!-- Arquivos estáticos -->
     <link rel="stylesheet" href="{% static '/styles/main.css' %}">
     <link rel="stylesheet" href="{% static '/styles/index.css' %}">
+    {%block style%}{%endblock%}
 
     <!-- Ícones -->
     <script src="https://kit.fontawesome.com/3b48aa32f5.js" crossorigin="anonymous"></script>
@@ -32,7 +33,7 @@
     {%block content%}
     {%endblock%}
 
-
+    <script type="module" src="{% static '/js/main.js'%}"></script>
     
     {%block script%}
     {%endblock%}

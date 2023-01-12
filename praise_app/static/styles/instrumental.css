@@ -1,0 +1,22 @@
+.praise__instrumental {
+    display: flex;
+    gap: var(--gap1);
+    padding-bottom: 5rem;
+}
+
+.praise__instrumental-infos {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap2);
+}
+
+.praise__instrumental-download {
+    display: flex;
+    gap: var(--gap1);
+    align-items: center;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    width: fit-content; /* impede que o botão fica gigante por causa do display-flex do pai dele */
+}
