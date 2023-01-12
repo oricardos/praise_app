@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block style%}
+<link rel="stylesheet" href="{% static '/styles/dashboard.css' %}">
+{%endblock%}
+
+{%block title%}
+    <title>Dashboard - Praise App</title>
+{%endblock%}
+
+{%block content%}
+<div class="container">
+  {%include 'partials/_header.html'%}
+    <h1>Olá, {{user.username}}</h1>
+  </div>
+{%endblock%}

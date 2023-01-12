@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.contrib import auth 
 
 def register(request):
     if request.method == 'POST':
@@ -29,10 +30,23 @@ def register(request):
         return render(request, 'users/register.html')
 
 def login(request):
+    if request.method == 'POST':
+        # recuperando valores dos inputs no front
+        email = request.POST['email']
+        password = request.POST['password']
+        if email == '' or password == '': #verifica se os campos estao preenchidos
+            print('Os Campos não podem ficar em branco')
+            return redirect('login')
+        if User.objects.filter(email=email).exists():
+            name = User.objects.filter(email=email).values_list('username', flat=True)[0]
+            user = auth.authenticate(request, username=name, password=password)
+            if user is not None:
+                auth.login(request, user)
+        return redirect('dashboard')
     return render(request, 'users/login.html')
 
 def logout(request):
     pass
 
 def dashboard(request):
-    pass
+  return render(request, 'users/dashboard.html')

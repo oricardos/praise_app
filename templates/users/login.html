@@ -16,17 +16,20 @@
   <h1>Praise App</h1>
   <h4>Login</h4>
 
-  <label for="email">
-    Email:
-    <input type="email" name="email" id="email">
-  </label>
-
-  <label for="password">
-    Senha:
-    <input type="password" name="password" id="password">
-  </label>
-
-  <button>Entrar</button>
-  <a href="{% url 'register' %}">Ainda não tem uma conta?</a>
+  <form action="{% url 'login' %}" method="POST">
+    {% csrf_token %}
+    <label for="email">
+      Email:
+      <input type="email" name="email" id="email">
+    </label>
+  
+    <label for="password">
+      Senha:
+      <input type="password" name="password" id="password">
+    </label>
+  
+    <button type="submit">Entrar</button>
+    <a href="{% url 'register' %}">Ainda não tem uma conta?</a>
+  </form>
 </div>
 {%endblock%}
