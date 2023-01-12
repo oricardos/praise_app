@@ -10,6 +10,14 @@ hr {
 
 nav {
   height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.praise__register-or-login {
+  display: flex;
+  list-style: none;
+  gap: var(--gap1);
 }
 
 nav, footer {

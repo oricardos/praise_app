@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block style%}
+<link rel="stylesheet" href="{% static '/styles/login.css' %}">
+{%endblock%}
+
+{%block title%}
+    <title>Login - Praise App</title>
+{%endblock%}
+
+{%block content%}
+<div class="container">
+  {%include 'partials/_header.html'%}
+
+  <h1>Praise App</h1>
+  <h4>Login</h4>
+
+  <label for="email">
+    Email:
+    <input type="email" name="email" id="email">
+  </label>
+
+  <label for="password">
+    Senha:
+    <input type="password" name="password" id="password">
+  </label>
+
+  <button>Entrar</button>
+  <a href="{% url 'register' %}">Ainda não tem uma conta?</a>
+</div>
+{%endblock%}

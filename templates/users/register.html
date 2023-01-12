@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block style%}
+<link rel="stylesheet" href="{% static '/styles/register.css' %}">
+{%endblock%}
+
+{%block title%}
+    <title>Cadastro - Praise App</title>
+{%endblock%}
+
+{%block content%}
+<div class="container">
+  {%include 'partials/_header.html'%}
+
+  <h1>Praise App</h1>
+  <h4>Criar Conta</h4>
+
+  <form action="{% url 'register' %}" method="POST">
+    {% csrf_token %}
+    <label for="name">
+      Nome Completo
+      <input type="text" name="name" id="name" required>
+    </label>
+
+    <label for="email">
+      Email
+      <input type="email" name="email" id="email" required>
+    </label>
+
+    <label for="password">
+        Senha
+       <input type="password" name="password" id="password" required>
+    </label>
+
+    <label for="confirm_password">
+      Confirmar Senha
+     <input type="password" name="confirm_password" id="confirm_password" required>
+  </label>
+
+  <button type="submit">Criar conta</button>
+  </form>
+</div>
+{%endblock%}
