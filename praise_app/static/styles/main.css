@@ -6,14 +6,13 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    padding: 0 3rem;
 }
 
 :root {
     /* colors */
     --black: #020100;
     --white: #FDFFFC;
-    --gray: #808080;
+    --gray: #ececec;
 
     --primary: #1982C4;
     --success: #8AC926;

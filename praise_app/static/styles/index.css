@@ -10,6 +10,9 @@ hr {
 
 nav {
   height: 100px;
+}
+
+nav, footer {
   display: flex;
   align-items: center;
 }
@@ -18,6 +21,7 @@ nav {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 3rem;
 }
 
 .praise__logo {
@@ -28,6 +32,7 @@ nav {
 
 #songs_table_wrapper {
   margin-top: 2rem;
+  height: calc(100vh - 200px);
 }
 
 main {
@@ -136,6 +141,18 @@ main {
 .praise__spotify,
 .praise__youtube {
   color: var(--white)!important;
+}
+
+footer {
+  background-color: var(--gray);
+  height: 68px;
+  width: 100%;
+  justify-content: center;
+}
+
+.praise__copyright {
+  text-align: center;
+  font-size: var(--text-sm);
 }
 
 
