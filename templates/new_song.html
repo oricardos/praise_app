@@ -6,7 +6,7 @@
 {%endblock%}
 
 {%block title%}
-    <title>Nova Músia - Praise App</title>
+    <title>Nova Música - Praise App</title>
 {%endblock%}
 
 {%block content%}
@@ -15,7 +15,7 @@
 
     <h1>Nova Música</h1>
 
-    <form action="{% url 'new_song' %}" method="POST">
+    <form action="{% url 'new_song' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <h4>Geral</h4>
         <div class="praise__form">
@@ -38,7 +38,7 @@
                     <label for="artist">
                         Artista*
                         <select name="artist" id="artist" required>
-                            <option selected="true" disabled="disabled">Selectionar um artista</option>
+                            <option selected="true" disabled="disabled">Selecionar um artista</option>
                             {% for artist in artists %}
                             <option value="{{artist.name}}">{{artist.name}}</option>
                             {%endfor%}
@@ -198,10 +198,12 @@
             <div class="form-row">
                 <label for="instrumental_file">
                     Arquivo para instrumental
-                    <input type="url" name="instrumental_file" id="instrumental_file">
+                    <input type="file" name="instrumental_file" id="instrumental_file">
                 </label>
             </div>
         </div>
+
+        <button type="submit">Cadastrar música</button>
     </form>
 </div>
 {%endblock%}

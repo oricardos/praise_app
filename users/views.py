@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth 
 from artists.models import Artist
+from songs.models import Song
 
 def register(request):
     if request.method == 'POST':
@@ -62,4 +63,42 @@ def new_song(request):
   artists = {
     'artists': artists_data
   }
-  return render(request, 'new_song.html', artists)
+
+  if request.method == 'POST':
+    is_posted = request.POST.get('is_posted', True)
+    song_name = request.POST['song_name']
+    # artist = get_object_or_404(Artist, pk=request.artists.id) tá dando bo aqui
+    matters = request.POST['matters']
+    video = request.POST['video']
+    playback = request.POST['playback']
+    spotify = request.POST['spotify']
+    ytmusic = request.POST['ytmusic']
+    featured_image = request.POST['featured_image']
+    note = request.POST['note']
+    lyric = request.POST['lyric']
+    voices = request.POST['voices']
+    extra_voice = request.POST['extra_voice']
+    voice_file = request.FILES['voice_file']
+    tone = request.POST['tone']
+    cipher = request.POST['cipher']
+    bpm = request.POST['bpm']
+    acoustic_guitar = request.POST['acoustic_guitar']
+    electric_guitar = request.POST['electric_guitar']
+    keyboard = request.POST['keyboard']
+    bass = request.POST['bass']
+    drums = request.POST['drums']
+    instrumental_file = request.FILES['instrumental_file']
+
+    song = Song.objects.create(is_posted=is_posted, song_name=song_name, 
+      artist=artist, matters=matters, video=video,
+      playback=playback, spotify=spotify, ytmusic=ytmusic,featured_image=featured_image,
+      note=note, lyric=lyric, voices=voices, extra_voice=extra_voice,
+      voice_file=voice_file, tone=tone,
+      cipher=cipher, bpm=bpm, acoustic_guitar=acoustic_guitar,
+      electric_guitar=electric_guitar, keyboard=keyboard, bass=bass,
+      drums=drums, instrumental_file=instrumental_file)
+
+    song.save()
+    return redirect('index')
+  else:
+    return render(request, 'new_song.html', artists)
