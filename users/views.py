@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth 
+from artists.models import Artist
 
 def register(request):
     if request.method == 'POST':
@@ -57,4 +58,8 @@ def dashboard(request):
     return redirect('login')
 
 def new_song(request):
-  return render(request, 'new_song.html')
+  artists_data = Artist.objects.all()
+  artists = {
+    'artists': artists_data
+  }
+  return render(request, 'new_song.html', artists)

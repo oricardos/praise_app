@@ -84,7 +84,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'praise_app',
         'USER': 'postgres',
-        'PASSWORD': '123456',
+        # 'PASSWORD': '123456', mac & windows
+        'PASSWORD': 'postgres', # linux - casa
         'HOST': 'localhost'
     }
 }
