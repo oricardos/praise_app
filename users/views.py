@@ -59,15 +59,14 @@ def dashboard(request):
     return redirect('login')
 
 def new_song(request):
-  artists_data = Artist.objects.all()
   artists = {
-    'artists': artists_data
+    'artists': Artist.objects.all()
   }
-
+  
   if request.method == 'POST':
     is_posted = request.POST.get('is_posted', True)
     song_name = request.POST['song_name']
-    # artist = get_object_or_404(Artist, pk=request.artists.id) tá dando bo aqui
+    artist = get_object_or_404(Artist, pk=request.artist.id)
     matters = request.POST['matters']
     video = request.POST['video']
     playback = request.POST['playback']

@@ -13,197 +13,260 @@
 <div class="container">
     {%include 'partials/_header.html'%}
 
-    <h1>Nova Música</h1>
-
-    <form action="{% url 'new_song' %}" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'new_song' %}" method="POST" enctype="multipart/form-data" class="mb-5">
         {% csrf_token %}
+        <legend class="fs-2">Nova Música</legend>
         <h4>Geral</h4>
         <div class="praise__form">
-            <div class="form_row">
-                <label for="is_posted">
-                    Exibir música na lista
-                    <input type="checkbox" name="is_posted" id="is_posted">
-                </label>
-            </div>
-
-            <div class="form_row">
-                <label for="song_name">
-                    Nome da música*
-                    <input required type="text" name="song_name" id="song_name">
-                </label>
-            </div>
-
-            {% if artists %}
-                <div class="form-row">
-                    <label for="artist">
-                        Artista*
-                        <select name="artist" id="artist" required>
-                            <option selected="true" disabled="disabled">Selecionar um artista</option>
-                            {% for artist in artists %}
-                            <option value="{{artist.name}}">{{artist.name}}</option>
-                            {%endfor%}
-                        </select>
-                    </label>
+            <div class="row mb-4">
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="form-row">
+                        <label for="is_posted">
+                            Exibir música na lista
+                            <input type="checkbox" name="is_posted" id="is_posted" class="form-check-label">
+                        </label>
+                    </div>
                 </div>
-            {% endif %}
 
-            <div class="form-row">
-                <label for="matters">
-                    Assunto*
-                    <input type="text" name="matters" id="matters" required>
-                </label>
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="form-row">
+                        <label for="song_name">
+                            Nome da música*
+                            <input required type="text" name="song_name" id="song_name" class="form-control w-100">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-lg-3">
+                    {% if artists %}
+                        <div class="form-row">
+                            <label for="artist">
+                                Artista*
+                                <select name="artist" id="artist" class="form-select w-100" required>
+                                    <option selected="true" disabled="disabled">Selecionar um artista</option>
+                                    {% for artist in artists %}
+                                    <option value="{{artist.id}}">{{artist.name}}</option>
+                                    {%endfor%}
+                                </select>
+                            </label>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-sm-12 col-lg-3">
+                    <div class="form-row">
+                        <label for="matters">
+                            Assunto*
+                            <input type="text" name="matters" id="matters" class="form-control w-100" required>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-4">
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="form-row">
+                        <label for="video">
+                            Vídeo*
+                            <input type="url" name="video" id="video" class="form-control" required>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="form-row">
+                        <label for="playback">
+                            Playback
+                            <input type="url" name="playback" class="form-control" id="playback">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="form-row">
+                        <label for="spotify">
+                            Spotify*
+                            <input type="url" name="spotify" class="form-control" id="spotify" required>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="form-row">
+                        <label for="ytmusic">
+                            YouTube Music*
+                            <input type="url" name="ytmusic" class="form-control" id="ytmusic" required>
+                        </label>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-row">
-                <label for="video">
-                    Vídeo*
-                    <input type="url" name="video" id="video" required>
-                </label>
-            </div>
+            <div class="row mb-4">
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="form-row">
+                        <label for="featured_image">
+                            Imagem de Destaque
+                            <input type="url" name="featured_image" class="form-control" id="featured_image">
+                        </label>
+                    </div>
+                </div>
 
-            <div class="form-row">
-                <label for="playback">
-                    Playback
-                    <input type="url" name="playback" id="playback">
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label for="spotify">
-                    Spotify*
-                    <input type="url" name="spotify" id="spotify" required>
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label for="ytmusic">
-                    YouTube Music*
-                    <input type="url" name="ytmusic" id="ytmusic" required>
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label for="featured_image">
-                    Imagem de Destaque
-                    <input type="url" name="featured_image" id="featured_image">
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label for="note">
-                    Observações
-                    <textarea id="note" name="note"
-                            rows="5" cols="33">
-                    </textarea>
-                </label>
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="form-row">
+                        <label for="note">
+                            Observações
+                            <textarea id="note" name="note" class="form-control"
+                                    rows="5" cols="33" value="">
+                            </textarea>
+                        </label>
+                    </div>
+                </div>
             </div>
 
             <hr>
 
             <h4>Vozes</h4>
 
-            <div class="form-row">
-                <label for="lyric">
-                    Letra*
-                    <textarea id="lyric" name="lyric"
-                            rows="5" cols="33" required>
-                    </textarea>
-                </label>
-            </div>
+            <div class="row mb-4">
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="form-row">
+                        <label for="lyric">
+                            Letra*
+                            <textarea id="lyric" name="lyric" class="form-control"
+                                    rows="5" cols="33" required>
+                            </textarea>
+                        </label>
+                    </div>
+                </div>
 
-            <h5>Vídeos</h5>
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="form-row">
+                        <label for="voices">
+                            Vozes
+                            <input type="url" name="voices" id="voices" class="form-control">
+                        </label>
+                    </div>
+                </div>
 
-            <div class="form-row">
-                <label for="voices">
-                    Vozes
-                    <input type="url" name="voices" id="voices">
-                </label>
-            </div>
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="form-row">
+                        <label for="extra_voice">
+                            Vozes (Extra)
+                            <input type="url" name="extra_voice" id="extra_voice" class="form-control">
+                        </label>
+                    </div>
+                </div>
 
-            <div class="form-row">
-                <label for="extra_voice">
-                    Vozes (Extra)
-                    <input type="url" name="extra_voice" id="extra_voice">
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label for="voice_file">
-                    Arquivo para vocal
-                    <input type="file" name="voice_file" id="voice_file">
-                </label>
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="form-row">
+                        <label for="voice_file">
+                            Arquivo para vocal
+                            <input type="file" name="voice_file" id="voice_file" class="form-control form-control-sm">
+                        </label>
+                    </div>
+                </div>
             </div>
 
             <hr>
 
             <h4>Instrumental</h4>
 
-            <div class="form-row">
-                <label for="tone">
-                    Tom*
-                    <input type="text" name="tone" id="tone" required>
-                </label>
-            </div>
+            <div class="row mb-4">
+                <div class="col-sm-12 col-md-3 col-lg-4">
+                    <div class="form-row">
+                        <label for="tone">
+                            Tom*
+                            <input type="text" name="tone" id="tone" class="form-control" required>
+                        </label>
+                    </div>
+                </div>
 
-            <div class="form-row">
-                <label for="cipher">
-                    Cifra*
-                    <input type="text" name="cipher" id="cipher" required>
-                </label>
-            </div>
+                <div class="col-sm-12 col-md-3 col-lg-4">
+                    <div class="form-row">
+                        <label for="cipher">
+                            Cifra*
+                            <input type="text" name="cipher" id="cipher" class="form-control" required>
+                        </label>
+                    </div>
+                </div>
 
-            <div class="form-row">
-                <label for="bpm">
-                    BPM*
-                    <input type="number" name="bpm" id="bpm" required>
-                </label>
+                <div class="col-sm-12 col-md-3 col-lg-4">
+                    <div class="form-row">
+                        <label for="bpm">
+                            BPM*
+                            <input type="number" name="bpm" id="bpm" class="form-control" required>
+                        </label>
+                    </div>
+                </div>
             </div>
 
             <h5>Vídeos</h5>
-            <div class="form-row">
-                <label for="acoustic_guitar">
-                    Versão Violão
-                    <input type="url" name="acoustic_guitar" id="acoustic_guitar">
-                </label>
+
+            <div class="row mb-4">
+                <div class="col-sm-12 col-md-3 col-lg-4">
+                    <div class="form-row">
+                        <label for="acoustic_guitar">
+                            Versão Violão
+                            <input type="url" name="acoustic_guitar" id="acoustic_guitar" class="form-control">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-4">
+                    <div class="form-row">
+                        <label for="electric_guitar">
+                            Versão Guitarra
+                            <input type="url" name="electric_guitar" id="electric_guitar" class="form-control">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-4">
+                    <div class="form-row">
+                        <label for="keyboard">
+                            Versão Teclado
+                            <input type="url" name="keyboard" id="keyboard" class="form-control">
+                        </label>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-row">
-                <label for="electric_guitar">
-                    Versão Guitarra
-                    <input type="url" name="electric_guitar" id="electric_guitar">
-                </label>
-            </div>
+            <div class="row mb-4">
+                <div class="col-sm-12 col-md-3 col-lg-4">
+                    <div class="form-row">
+                        <label for="bass">
+                            Versão Baixo
+                            <input type="url" name="bass" id="bass" class="form-control">
+                        </label>
+                    </div>
+                </div>
 
-            <div class="form-row">
-                <label for="keyboard">
-                    Versão Teclado
-                    <input type="url" name="keyboard" id="keyboard">
-                </label>
-            </div>
+                <div class="col-sm-12 col-md-3 col-lg-4">
+                    <div class="form-row">
+                        <label for="drums">
+                            Versão Bateria
+                            <input type="url" name="drums" id="drums" class="form-control">
+                        </label>
+                    </div>
+                </div>
 
-            <div class="form-row">
-                <label for="bass">
-                    Versão Baixo
-                    <input type="url" name="bass" id="bass">
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label for="drums">
-                    Versão Bateria
-                    <input type="url" name="drums" id="drums">
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label for="instrumental_file">
-                    Arquivo para instrumental
-                    <input type="file" name="instrumental_file" id="instrumental_file">
-                </label>
+                <div class="col-sm-12 col-md-3 col-lg-4">
+                    <div class="form-row">
+                        <label for="instrumental_file">
+                            Arquivo para instrumental
+                            <input type="file" name="instrumental_file" id="instrumental_file" class="form-control">
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <button type="submit">Cadastrar música</button>
+        <button type="submit" class="btn btn-success">
+            Cadastrar música
+        </button>
     </form>
 </div>
+
+{%include 'partials/_footer.html'%}
+
 {%endblock%}
