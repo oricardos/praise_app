@@ -10,16 +10,16 @@ class Song(models.Model):
     matters = models.CharField(max_length=200)
     video = models.CharField(max_length=200)
     playback = models.CharField(max_length=200, blank=True)
-    spotify = models.CharField(max_length=200)
-    ytmusic = models.CharField(max_length=200)
+    spotify = models.CharField(max_length=200, help_text="Link da música no Spotify")
+    ytmusic = models.CharField(max_length=200, help_text="Link da música no YouTube Music")
     featured_image = models.CharField(default="", max_length=250, blank=True)
     note = models.TextField(blank=True) #observações
 
     #  VOZES
     lyric = models.TextField()
-    voices = models.CharField(max_length=200, blank=True)
-    extra_voice = models.CharField(max_length=200, blank=True)
-    voice_file = models.ImageField(upload_to='images/voices/%d/%m/%Y/', blank=True)
+    voices = models.CharField(max_length=200, blank=True, help_text="Link com vídeo de separação de vozes")
+    extra_voice = models.CharField(max_length=200, blank=True, help_text="Caso haja mais de um vídeo de vozes")
+    voice_file = models.ImageField(upload_to='images/voices/%d/%m/%Y/', blank=True, help_text="Arquivos úteis para vocal")
     
     # INSTRUMENTOS
     tone = models.CharField(max_length=200)

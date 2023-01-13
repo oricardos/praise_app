@@ -59,8 +59,10 @@ def dashboard(request):
     return redirect('login')
 
 def new_song(request):
-  artists = {
-    'artists': Artist.objects.all()
+  song = Song.objects.all()
+  context = {
+    'artists': Artist.objects.all(),
+    # 'spotify_help_text': song[0].spotify,
   }
   
   if request.method == 'POST':
@@ -100,4 +102,4 @@ def new_song(request):
     song.save()
     return redirect('index')
   else:
-    return render(request, 'new_song.html', artists)
+    return render(request, 'new_song.html', context)
