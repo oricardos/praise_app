@@ -12,16 +12,19 @@ def register(request):
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
 
-        if not name.strip(): #impede campo nome vazio
+        if void_field(name): #impede campo nome vazio
           messages.error(request,'O campo nome não pode ficar vazio')
           return redirect('register')
-        if not email.strip(): #impede campo email vazio
+        if void_field(email): #impede campo email vazio
           messages.error(request,'O campo nome não pode ficar vazio')
           return redirect('register')
         if password != confirm_password: #verifica se as senhas sao iguais
           messages.error(request, 'As senhas não são iguais!')
           return redirect('register')
         if User.objects.filter(email=email).exists(): #verifica se o usuário já existe
+          messages.error(request,'Usuário já cadastrado')
+          return redirect('register')
+        if User.objects.filter(username=name).exists(): #verifica se o usuário já existe
           messages.error(request,'Usuário já cadastrado')
           return redirect('register')
         user = User.objects.create_user(username=name, email=email, password=password) #cria objeto do usuário
@@ -36,7 +39,7 @@ def login(request):
         # recuperando valores dos inputs no front
         email = request.POST['email']
         password = request.POST['password']
-        if email == '' or password == '': #verifica se os campos estao preenchidos
+        if void_field(email) or void_field(password): #verifica se os campos estao preenchidos
             messages.error(request,'Os Campos não podem ficar em branco.')
             return redirect('login')
         if User.objects.filter(email=email).exists():
@@ -50,7 +53,6 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('login')
-
 
 def dashboard(request):
   if request.user.is_authenticated:
@@ -103,3 +105,6 @@ def new_song(request):
     return redirect('index')
   else:
     return render(request, 'new_song.html', context)
+
+def void_field(field):
+  return not field.strip()
