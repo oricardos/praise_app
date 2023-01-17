@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
-from django.contrib import auth 
+from django.contrib import auth, messages
 from artists.models import Artist
 from songs.models import Song
 
@@ -13,20 +13,20 @@ def register(request):
         confirm_password = request.POST['confirm_password']
 
         if not name.strip(): #impede campo nome vazio
-          print('O campo nome não pode ficar vazio')
+          messages.error(request,'O campo nome não pode ficar vazio')
           return redirect('register')
         if not email.strip(): #impede campo email vazio
-          print('O campo nome não pode ficar vazio')
+          messages.error(request,'O campo nome não pode ficar vazio')
           return redirect('register')
         if password != confirm_password: #verifica se as senhas sao iguais
-          print('As senhas não são iguais!')
+          messages.error(request, 'As senhas não são iguais!')
           return redirect('register')
         if User.objects.filter(email=email).exists(): #verifica se o usuário já existe
-          print('Usuário já cadastrado')
+          messages.error(request,'Usuário já cadastrado')
           return redirect('register')
         user = User.objects.create_user(username=name, email=email, password=password) #cria objeto do usuário
         user.save() #salva usuario na base de dados
-        print('usuario Cadastrado com sucesso')
+        messages.success(request, 'Cadastro realizado com sucesso')
         return redirect('login')
     else:
         return render(request, 'users/register.html')
@@ -37,7 +37,7 @@ def login(request):
         email = request.POST['email']
         password = request.POST['password']
         if email == '' or password == '': #verifica se os campos estao preenchidos
-            print('Os Campos não podem ficar em branco')
+            messages.error(request,'Os Campos não podem ficar em branco.')
             return redirect('login')
         if User.objects.filter(email=email).exists():
             name = User.objects.filter(email=email).values_list('username', flat=True)[0]
