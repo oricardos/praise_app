@@ -15,32 +15,44 @@
         </form> -->
     
         <table id="songs_table" class="row-border hover stripe" style="width:100%">
-            <!-- tá com bo ainda -->
-            <a href="{% url 'new_song' %}" style="text-align:end">Adicionar nova musica</a>
-            <thead>
-                <tr>                					
-                    <th>Nome</th>
-                    <th>Voz</th>
-                    <th>Instrumental</th>
-                    <th>Ver tudo</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if songs %}
-                    {% for song in songs %}
-                    <tr>
-                        <td>{{ song.song_name }}</td>
-                        <td><a href="{% url 'voice' song.id %}"><i class="fas fa-eye"></i></a></td>
-                        <td><a href="{% url 'instrumental' song.id %}"><i class="fas fa-eye"></i></a></td>
-                        <td><a href="{% url 'song' song.id %}"><i class="fas fa-eye"></i></a></td>
+            {% if user.is_authenticated %}
+                <a href="{% url 'new_song' %}" style="text-align:end">Adicionar nova musica</a>
+            
+                <thead>
+                    <tr>                					
+                        <th>Nome</th>
+                        <th>Voz</th>
+                        <th>Instrumental</th>
+                        <th>Ver tudo</th>
                     </tr>
-                    {%endfor%}
-                {% else %}
-                <tr>
-                    <td colspan="4">There is no data to display</td>
-                </tr>
-                {% endif %}
-            </tbody>
+                </thead>
+                <tbody>
+                    {% if songs %}
+                        {% for song in songs %}
+                        <tr>
+                            <td>{{ song.song_name }}</td>
+                            <td><a href="{% url 'voice' song.id %}"><i class="fas fa-eye"></i></a></td>
+                            <td><a href="{% url 'instrumental' song.id %}"><i class="fas fa-eye"></i></a></td>
+                            <td><a href="{% url 'song' song.id %}"><i class="fas fa-eye"></i></a></td>
+                        </tr>
+                        {%endfor%}
+                    {% else %}
+                    <tr>
+                        <td colspan="4">There is no data to display</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            {% else %}
+                <div class="login-list">
+                    <p>
+                        Faça
+                        <a href="{% url 'login' %}" class="text-center">
+                            Login 
+                        </a> 
+                        para ter acesso à lista de músicas.
+                    </p>
+                </div>   
+            {% endif %}
         </table>
     </div>
 

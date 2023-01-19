@@ -4,6 +4,17 @@ a {
   color: var(--primary);
 }
 
+.login-list {
+  height: calc(100vh - 168px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-list p {
+  font-size: 2rem;
+}
+
 hr {
   margin: 2rem 0;
 }
