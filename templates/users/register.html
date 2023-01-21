@@ -1,46 +1,55 @@
-{%extends 'base.html'%}
-{%load static%}
+{% extends 'account/base.html' %}
+{% load static %}
+{% block title %}Register{% endblock title %}
+{% block content %}
+<!-- end row -->
+<h4 class="font-size-18 text-muted mt-2 text-center">Welcome Back !</h4>
+<p class="mb-3 text-center">Get your free Upzet account now.</p>
+{%include 'partials/_alerts.html' %}
+<form action="{% url 'register' %}" method="POST">
+	{% csrf_token %}
 
-{%block style%}
-<link rel="stylesheet" href="{% static '/styles/register.css' %}">
-{%endblock%}
+	<div class="mb-3">
+		<label for="name" class="form-label">Nome Completo</label>
+		<input type="text" name="name" id="name" class="form-control" required>
+	</div>
 
-{%block title%}
-    <title>Cadastro - Praise App</title>
-{%endblock%}
+	<div class="mb-3">
+		<label for="email" class="form-label">Email</label>
+		<input type="email" name="email" id="email" class="form-control" required>
+	</div>
 
-{%block content%}
-<div class="container">
-  {%include 'partials/_header.html'%}
+	<div class="mb-3">
+		<label for="password" class="form-label">Senha</label>
+		<input type="password" name="password" id="password" class="form-control" required>
+	</div>
 
-  <h1>Praise App</h1>
-  <h4>Criar Conta</h4>
+	<div class="mb-3">
+		<label for="confirm_password" class="form-label">Confirmar Senha</label>
+		<input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
+	</div>
 
-  {%include 'partials/_alerts.html' %}
+	
 
-  <form action="{% url 'register' %}" method="POST">
-    {% csrf_token %}
-    <label for="name">
-      Nome Completo
-      <input type="text" name="name" id="name" required>
-    </label>
-
-    <label for="email">
-      Email
-      <input type="email" name="email" id="email" required>
-    </label>
-
-    <label for="password">
-        Senha
-       <input type="password" name="password" id="password" required>
-    </label>
-
-    <label for="confirm_password">
-      Confirmar Senha
-     <input type="password" name="confirm_password" id="confirm_password" required>
-  </label>
-
-  <button type="submit">Criar conta</button>
-  </form>
+	<div class="d-flex flex-column text-center">
+		<button type="submit" class="btn btn-primary mb-3 w-100">Criar conta</button>
+		<p>Já possui uma conta? <a href="{% url 'login' %}" class="fw-medium text-primary">
+			Login</a>
+	</p>
+	</div>
+</form>
 </div>
-{%endblock%}
+</div>
+</div>
+<div class="mt-5 text-center">
+	<p class="text-white-50">
+		<script>document.write(new Date().getFullYear())</script> © Praise App.
+	</p>
+</div>
+</div>
+</div>
+<!-- end row -->
+</div>
+</div>
+<!-- end Account pages -->
+{% endblock content %}

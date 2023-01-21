@@ -68,9 +68,10 @@ def new_song(request):
   }
   
   if request.method == 'POST':
-    is_posted = request.POST.get('is_posted', True)
+    if is_posted := request.POST.get('is_posted', False) == 'on':
+      is_posted = True
     song_name = request.POST['song_name']
-    artist = get_object_or_404(Artist, pk=request.artist.id)
+    artist = get_object_or_404(Artist, pk=request.POST['artist'])
     matters = request.POST['matters']
     video = request.POST['video']
     playback = request.POST['playback']
@@ -81,7 +82,7 @@ def new_song(request):
     lyric = request.POST['lyric']
     voices = request.POST['voices']
     extra_voice = request.POST['extra_voice']
-    voice_file = request.FILES['voice_file']
+    voice_file = request.FILES.get('voicefile', None)
     tone = request.POST['tone']
     cipher = request.POST['cipher']
     bpm = request.POST['bpm']
@@ -90,7 +91,7 @@ def new_song(request):
     keyboard = request.POST['keyboard']
     bass = request.POST['bass']
     drums = request.POST['drums']
-    instrumental_file = request.FILES['instrumental_file']
+    instrumental_file = request.FILES.get('instrumentalfile', None)
 
     song = Song.objects.create(is_posted=is_posted, song_name=song_name, 
       artist=artist, matters=matters, video=video,

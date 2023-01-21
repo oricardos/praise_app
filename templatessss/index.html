@@ -1,0 +1,66 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block title%}
+    <title>Praise App</title>
+{%endblock%}
+
+{%block content%}
+    <div class="container">
+        {%include 'partials/_header.html'%}
+
+        <!-- <form action="{% url 'search' %}">
+            <input type="search" name="search" id="search">
+            <button type="submit">Pesquisar</button>
+        </form> -->
+    
+        <table id="songs_table" class="row-border hover stripe" style="width:100%">
+            <!-- tá com bo ainda -->
+            <!-- <a href="{% url 'new_song' %}" style="text-align:end">Adicionar nova musica</a> -->
+            <thead>
+                <tr>                					
+                    <th>Nome</th>
+                    <th>Voz</th>
+                    <th>Instrumental</th>
+                    <th>Ver tudo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if songs %}
+                    {% for song in songs %}
+                    <tr>
+                        <td>{{ song.song_name }}</td>
+                        <td><a href="{% url 'voice' song.id %}"><i class="fas fa-eye"></i></a></td>
+                        <td><a href="{% url 'instrumental' song.id %}"><i class="fas fa-eye"></i></a></td>
+                        <td><a href="{% url 'song' song.id %}"><i class="fas fa-eye"></i></a></td>
+                    </tr>
+                    {%endfor%}
+                {% else %}
+                <tr>
+                    <td colspan="4">There is no data to display</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    {%include 'partials/_footer.html'%}
+{%endblock%}
+
+{%block script%}
+    <script>
+        const limitLyric = document.querySelectorAll('.praise__lyric');
+
+        limitLyric.forEach(lyric => {
+            const text = lyric.innerHTML;
+            const resumeText = text.slice(0, 50)+'...';
+
+            lyric.innerHTML = resumeText;
+        });
+
+
+        $(document).ready(function () {
+            $('#songs_table').DataTable();
+        });
+    </script>
+{%endblock%}
