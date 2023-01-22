@@ -47,6 +47,7 @@ def login(request):
             user = auth.authenticate(request, username=name, password=password)
             if user is not None:
                 auth.login(request, user)
+        messages.success(request, 'Bem-vindo(a) de volta!')
         return redirect('index') #se o login for realizado com sucesso, redireciona para tela de listagem / index
     return render(request, 'users/login.html')
 
@@ -103,6 +104,7 @@ def new_song(request):
       drums=drums, instrumental_file=instrumental_file)
 
     song.save()
+    messages.success(request, 'Música adicionada com sucesso, confira na lista de músicas ou faça uma busca.')
     return redirect('index')
   else:
     return render(request, 'new_song.html', context)

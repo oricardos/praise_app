@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_list_or_404, get_object_or_404
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.models import User
 from .models import Song
+from users.views import login
 
 def index(request):
     songs_datas = Song.objects.order_by('-song_name').filter(is_posted=True)
