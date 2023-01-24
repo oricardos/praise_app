@@ -2518,7 +2518,7 @@ input[switch="dark"]:checked + label {
   background-size: cover;
   background-position: center; }
 
-.auth-logo.logo-light {
+  .auth-logo.logo-light {
   display: block; }
 
 .auth-logo.logo-dark {

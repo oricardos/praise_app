@@ -1,4 +1,4 @@
-{%extends 'base.html'%}
+{%extends 'partials/base.html'%}
 {%load static%}
 
 {%block style%}
@@ -6,33 +6,33 @@
 {%endblock%}
 
 {%block title%}
-    <title>{{song.song_name}} - Praise App</title>
+{{song.song_name}} - Praise App
 {%endblock%}
 
 {%block content%}
 <input type="hidden" name="voice" class="voice-page">
 <input type="hidden" name="video" class="song-lyric" value="{{song.lyric}}">
 
-<div class="container">
-    {%include 'partials/_header_info.html'%}
+<div class="page-content px-5">
+        {%include 'partials/_header_info.html'%}
 
-    <main class="praise__voice">
-        <div class="praise__voice-lyric">
+    <main class="row">
+        <div class="col-sm-12 col-md-6 mb-3">
             <h2 class="praise__section-title">Letra</h2>
             <span class="praise__voice-lyrics"></p>
         </div>
         <!-- inicio voices -->
-        <div class="praise__voice-infos">
+        <div class="col-sm-12 col-md-6">
             <div>
                 <h4>Ouça</h4>
-                <div class="praise__listen">
-                    <a href="{{song.spotify}}" target="_blank" class="praise__spotify">
-                        <i class="fab fa-spotify"></i>
+                <div class="mb-3">
+                    <a href="{{song.spotify}}" target="_blank" class="btn btn-success w-100">
+                        <i class="fab fa-spotify mr-3"></i>
                         Ouvir no Spotify
                     </a>
 
-                    <a href="{{song.ytmusic}}" target="_blank" class="praise__youtube">
-                        <i class="fab fa-youtube"></i>
+                    <a href="{{song.ytmusic}}" target="_blank" class="btn btn-success w-100 my-3">
+                        <i class="fab fa-youtube mr-3"></i>
                         Ouvir no YouTube Music
                     </a>
                 </div>
@@ -41,10 +41,11 @@
             <!-- <a href="" class="praise__voice-download"><i class="fas fa-download"></i>Baixar Letra</a> -->
             
             {% if song.voices %}
-            <div class="praise__voice-voices">
+            <div class="praise__voice-voices mb-3">
                 <input type="hidden" name="video" class="voices" value="{{song.voices}}">
                 <h4>Vozes</h4>
-                <iframe 
+                <div class="ratio ratio-16x9">
+                    <iframe 
                     class="youtube-embeded-voices"
                     width="560" 
                     src=""
@@ -53,16 +54,18 @@
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     allowfullscreen></iframe>
+                </div>
             </div>
             {% endif %}
             <!-- fim voices -->
 
              <!-- inicio extra-voices -->
             {% if song.extra_voice %}
-            <div class="praise__voice-extra_voice">
+            <div class="praise__voice-extra_voice mb-3">
                 <input type="hidden" name="video" class="extraVoices" value="{{song.extra_voice}}">
                 <h4>Extra</h4>
-                <iframe 
+                <div class="ratio ratio-16x9">
+                    <iframe 
                     class="youtube-embeded-extra_voice"
                     width="560" 
                     src=""
@@ -71,6 +74,7 @@
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     allowfullscreen></iframe>
+                </div>
             </div>
             {% endif %}
 
@@ -82,7 +86,7 @@
             {%endif%}
         </div>
     </main>
-</div>
+    </div>
 
 {%include 'partials/_footer.html'%}
 {%endblock%}
