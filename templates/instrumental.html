@@ -1,4 +1,4 @@
-{%extends 'base.html'%}
+{%extends 'partials/base.html'%}
 {%load static%}
 
 {%block style%}
@@ -6,130 +6,97 @@
 {%endblock%}
 
 {%block title%}
-    <title>{{song.song_name}} - Praise App</title>
+{{song.song_name}} - Praise App
 {%endblock%}
 
 {%block content%}
 <input type="hidden" name="instrumental" class="instrumental-page">
-<div class="container">
+<div class="page-content px-5">
     {%include 'partials/_header_info.html'%}
 
-    <main class="praise__instrumental">
-        <div class="praise__instrumental-cipher">
+    <main class="row">
+        <div class="col-sm-12 col-md-6 mb-3">
             <h2 class="praise__section-title">Cifra</h2>
-            <a href="{{song.cipher}" download target="_blank"> ir para Cifra</a><br/>
+            <a href="{{song.cipher}" download target="_blank"> ir para Cifra</a><br />
         </div>
 
-        <div class="praise__instrumental-infos">
-            <div>
-                <h4>Ouça</h4>
-                <div class="praise__listen">
-                    <a href="{{song.spotify}}" target="_blank" class="praise__spotify">
-                        <i class="fab fa-spotify"></i>
-                        Ouvir no Spotify
-                    </a>
-
-                    <a href="{{song.ytmusic}}" target="_blank" class="praise__youtube">
-                        <i class="fab fa-youtube"></i>
-                        Ouvir no YouTube Music
-                    </a>
-                </div>
-            </div>
+        <div class="col-sm-12 col-md-6">
+            {% include 'partials/_listen.html' %}
 
             <!-- <a href="" class="praise__instrumental-download"><i class="fas fa-download"></i>Baixar Cifra</a> -->
-            
+
             {% if song.acoustic_guitar %}
-            <div class="praise__instrumental-ag">
+            <div class="praise__instrumental-ag mb-3">
                 <input type="hidden" name="video" class="acoustic_guitar" value="{{song.acoustic_guitar}}">
                 <h4>Violão</h4>
-                <iframe 
-                    class="youtube-embeded-acoustic_guitar"
-                    width="560" 
-                    src=""
-                    height="315" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen></iframe>
+                <div class="ratio ratio-16x9">
+                    <iframe class="youtube-embeded-acoustic_guitar" width="560" src="" height="315"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
             </div>
-        {%endif%}
+            {%endif%}
 
-        {%if song.electric_guitar %}
-            <div class="praise__instrumental-eg">
+            {%if song.electric_guitar %}
+            <div class="praise__instrumental-eg mb-3">
                 <input type="hidden" name="video" class="electric_guitar" value="{{song.electric_guitar}}">
                 <h4>Guitarra</h4>
-                <iframe 
-                    class="youtube-embeded-electric_guitar"
-                    width="560" 
-                    src=""
-                    height="315" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen></iframe>
+                <div class="ratio ratio-16x9">
+                    <iframe class="youtube-embeded-electric_guitar" width="560" src="" height="315"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
             </div>
-        {%endif%}
+            {%endif%}
 
-        {%if song.keyboard %}
-            <div class="praise__intrumental-kb">
+            {%if song.keyboard %}
+            <div class="praise__intrumental-kb mb-3">
                 <input type="hidden" name="video" class="keyboard" value="{{song.keyboard}}">
                 <h4>Teclado</h4>
-                <iframe 
-                    class="youtube-embeded-keyboard"
-                    width="560" 
-                    src=""
-                    height="315" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen></iframe>
+                <div class="ratio ratio-16x9">
+                    <iframe class="youtube-embeded-keyboard" width="560" src="" height="315"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
             </div>
-        {%endif%}
+            {%endif%}
 
-        {%if song.bass %}
-            <div class="praise__intrumental-bass">
+            {%if song.bass %}
+            <div class="praise__intrumental-bass mb-3">
                 <input type="hidden" name="video" class="bass" value="{{song.bass}}">
                 <h4>Baixo</h4>
-                <iframe 
-                    class="youtube-embeded-bass"
-                    width="560" 
-                    src=""
-                    height="315" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen></iframe>
+                <div class="ratio ratio-16x9">
+                    <iframe class="youtube-embeded-bass" width="560" src="" height="315" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
             </div>
-        {%endif%}
+            {%endif%}
 
-        {%if song.drums %}
-        <div class="praise__intrumental-drums">
-            <input type="hidden" name="video" class="drums" value="{{song.drums}}">
-            <h4>Bateria</h4>
-            <iframe 
-                class="youtube-embeded-drums"
-                width="560" 
-                src=""
-                height="315" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen></iframe>
-        </div>
-        {%endif%}
-
-        {%if song.instrumental_file %}
-            <div class="praise__intrumental-file">
-                <a href="{{song.instrumental_file.url}}" download target="_blank">Download</a><br/>
+            {%if song.drums %}
+            <div class="praise__intrumental-drums mb-3">
+                <input type="hidden" name="video" class="drums" value="{{song.drums}}">
+                <h4>Bateria</h4>
+                <div class="ratio ratio-16x9">
+                    <iframe class="youtube-embeded-drums" width="560" src="" height="315" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
             </div>
-        {%endif%}
+            {%endif%}
 
-        {% if song.note %}
-            <div class="praise__note">
-                <h4>Observações:</h4>
-                <p>{{song.note}}</p>
+            {%if song.instrumental_file %}
+            <div class="praise__intrumental-file mb-3">
+                <a href="{{song.instrumental_file.url}}" download target="_blank">Download</a><br />
             </div>
-        {%endif%}
+            {%endif%}
+
+            {% include 'partials/_note.html' %}
         </div>
     </main>
 </div>

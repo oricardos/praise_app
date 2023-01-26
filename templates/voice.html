@@ -19,24 +19,11 @@
     <main class="row">
         <div class="col-sm-12 col-md-6 mb-3">
             <h2 class="praise__section-title">Letra</h2>
-            <span class="praise__voice-lyrics"></p>
+            <span class="praise__voice-lyrics"></span>
         </div>
         <!-- inicio voices -->
         <div class="col-sm-12 col-md-6">
-            <div>
-                <h4>Ouça</h4>
-                <div class="mb-3">
-                    <a href="{{song.spotify}}" target="_blank" class="btn btn-success w-100">
-                        <i class="fab fa-spotify mr-3"></i>
-                        Ouvir no Spotify
-                    </a>
-
-                    <a href="{{song.ytmusic}}" target="_blank" class="btn btn-success w-100 my-3">
-                        <i class="fab fa-youtube mr-3"></i>
-                        Ouvir no YouTube Music
-                    </a>
-                </div>
-            </div>
+            {% include 'partials/_listen.html' %}
 
             <!-- <a href="" class="praise__voice-download"><i class="fas fa-download"></i>Baixar Letra</a> -->
             
@@ -78,12 +65,7 @@
             </div>
             {% endif %}
 
-            {% if song.note %}
-                <div class="praise__note">
-                    <h4>Observações:</h4>
-                    <p>{{song.note}}</p>
-                </div>
-            {%endif%}
+            {% include 'partials/_note.html' %}
         </div>
     </main>
     </div>
