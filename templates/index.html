@@ -4,6 +4,7 @@
 {% block extra_css %}
         <!-- jvectormap -->
         <link href="{% static 'libs/jqvmap/dist/jqvmap.min.css' %}" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.jqueryui.css">
 {% endblock extra_css %}
 
 {% block content %}
@@ -42,7 +43,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12">
-                                <table id="songs_table" class="row-border hover stripe" style="width:100%">
+                                <table id="songs_table" class="row-border hover stripe display responsive nowrap" cellsspacing="0" style="width:100%">
                                     <a href="{% url 'new_song' %}" style="text-align:end" class="text-white">
                                         <button class="btn btn-primary mb-5">
                                             Adicionar nova musica
@@ -52,11 +53,11 @@
 
                                     <thead>
                                         <tr>                					
-                                            <th>Nome</th>
-                                            <th class="text-center">Assunto</th>
-                                            <th class="text-center">Voz</th>
-                                            <th class="text-center">Instrumental</th>
-                                            <th class="text-center">Ver tudo</th>
+                                            <th data-priority="1">Nome</th>
+                                            <th class="text-center" data-priority="2">Assunto</th>
+                                            <th class="text-center" data-priority="3">Voz</th>
+                                            <th class="text-center" data-priority="4">Instrumental</th>
+                                            <th class="text-center" data-priority="5">Ver tudo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -88,8 +89,15 @@
 {% block extra_javascript %}
 
 <!-- Datatable -->
+<script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.js"></script>
 <script>
-    $('#songs_table').DataTable();
+    $('#songs_table').DataTable({
+        responsive: true,
+        columnDefs: [
+        { responsivePriority: 1, targets: 0 },
+        { responsivePriority: 2, targets: -1 }
+    ]
+    });
 </script>
 
         <!-- apexcharts js -->
