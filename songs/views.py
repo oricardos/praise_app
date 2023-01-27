@@ -1,9 +1,11 @@
-from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Song
-from users.views import login
+from django.contrib import messages
 
 def index(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
     songs_datas = Song.objects.order_by('-song_name').filter(is_posted=True)
 
     songs = {
