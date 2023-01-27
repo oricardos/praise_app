@@ -1,0 +1,34 @@
+{% extends 'partials/base.html' %}
+{%load static%}
+
+{%block title%}
+Configurações - Loben App
+{%endblock%}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-0">Configurações</h4>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-sm-12">
+                <form action="{% url 'user_settings' user.id %}" method="POST">
+                    {% csrf_token %}
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" class="form-control mb-3" value="{{user.username}}">
+                    <button class="btn btn-primary" type="submit">Atualizar informações</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

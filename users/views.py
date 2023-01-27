@@ -111,3 +111,20 @@ def new_song(request):
 
 def void_field(field):
   return not field.strip()
+
+def user_settings(request, id):
+  user = User.objects.get(pk=id)
+
+  if request.method == 'POST':
+    name = request.POST['name']
+    user.username = name
+    print(name)
+    user.save()
+    messages.success(request, 'Informações atualizadas')
+    return redirect('index')
+
+  context = {
+    'user': user,
+  }
+
+  return render(request, 'users/settings.html', context)

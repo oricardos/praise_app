@@ -255,7 +255,7 @@
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
                                 {% if user.is_authenticated %}
-                                    <!-- <a class="dropdown-item" href="#"><i class="ri-settings-2-line font-size-17 align-middle me-1"></i> Settings</a> -->
+                                    <a class="dropdown-item" href="{% url 'user_settings' user.id %}"><i class="ri-settings-2-line font-size-17 align-middle me-1"></i>Configurações</a>
                                     
                                     <a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class=" ri-logout-circle-r-line font-size-16 align-middle me-1 text-danger"></i> Log Out</a>
                                 {% endif %}
