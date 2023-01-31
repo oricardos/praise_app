@@ -1,6 +1,6 @@
 {% extends 'partials/base.html' %}
 {% load static %}
-{% block title %}Dashboard{% endblock title %}
+{% block title %}Ministério de Louvor{% endblock title %}
 {% block extra_css %}
         <!-- jvectormap -->
         <link href="{% static 'libs/jqvmap/dist/jqvmap.min.css' %}" rel="stylesheet" />
@@ -9,7 +9,7 @@
 
 {% block content %}
                 {% if user.is_authenticated %}
-                {% if messages %}
+                {% comment %} {% if messages %}
                 {% for message in messages %}
                 <input type="hidden" id="login-msg" value="{{message}}">
                 <button type="button" class="btn btn-primary" id="borderedToast1Btn" hidden>Primary toast</button>
@@ -26,10 +26,10 @@
                     </div>
                 </div>
                 {% endfor %}
-                {% endif %}
+                {% endif %} {% endcomment %}
                 <div class="page-content">
                     <div class="container-fluid">
-
+                        {% include 'partials/_alerts.html'%}
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
@@ -42,15 +42,16 @@
                         <!-- end page title -->
 
                         <div class="row mt-3">
+                            <div class="col-12 d-flex justify-content-center justify-content-sm-end">
+                                <a href="{% url 'new_song' %}" style="text-align:end" class="text-white">
+                                    <button class="btn btn-primary mb-5">
+                                        Adicionar nova música
+                                        <i class="fas fa-plus ml-5"></i>
+                                    </button>
+                                </a>
+                            </div>
                             <div class="col-12">
                                 <table id="songs_table" class="row-border hover stripe display responsive nowrap" cellsspacing="0" style="width:100%">
-                                    <a href="{% url 'new_song' %}" style="text-align:end" class="text-white">
-                                        <button class="btn btn-primary mb-5">
-                                            Adicionar nova musica
-                                            <i class="fas fa-plus ml-5"></i>
-                                        </button>
-                                    </a>
-
                                     <thead>
                                         <tr>                					
                                             <th data-priority="1">Nome</th>
@@ -91,22 +92,16 @@
 <!-- Datatable -->
 <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.js"></script>
 <script>
-    $('#songs_table').DataTable({
-        responsive: true,
-        columnDefs: [
-        { responsivePriority: 1, targets: 0 },
-        { responsivePriority: 2, targets: -1 }
-    ]
-    });
-</script>
-
-        <!-- apexcharts js -->
-        <script src="{% static 'libs/apexcharts/dist/apexcharts.min.js' %}"></script>
-        
-        <!-- jquery.vectormap map -->
-        <script src="{% static 'libs/jqvmap/dist/jquery.vmap.min.js' %}"></script>
-        <script src="{% static 'libs/jqvmap/dist/maps/jquery.vmap.usa.js' %}"></script>
-        
+    $(document).ready( function () {
+        $('#songs_table').DataTable({
+            responsive: true,
+            columnDefs: [
+                {responsivePriority: 1, targets: 0},
+                {responsivePriority: 2, targets: -1}    
+            ]
+        });
+    } );
+</script>        
         <!-- Bootstrap Toasts Js -->
         <script src="{% static 'js/pages/bootstrap-toasts.init.js' %}"></script>
 

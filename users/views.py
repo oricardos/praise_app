@@ -118,7 +118,6 @@ def user_settings(request, id):
   if request.method == 'POST':
     name = request.POST['name']
     user.username = name
-    print(name)
     user.save()
     messages.success(request, 'Informações atualizadas')
     return redirect('index')

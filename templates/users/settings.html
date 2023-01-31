@@ -22,8 +22,28 @@ Configurações - Loben App
             <div class="col-lg-6 col-sm-12">
                 <form action="{% url 'user_settings' user.id %}" method="POST">
                     {% csrf_token %}
-                    <label for="name">Nome</label>
-                    <input type="text" id="name" name="name" class="form-control mb-3" value="{{user.username}}">
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" id="name" name="name" class="form-control" value="{{user.username}}">
+                    </div>
+
+                    {% comment %} <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{user.email}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Nova senha</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Confirmar nova senha</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                    </div> {% endcomment %}
+
+                    
                     <button class="btn btn-primary" type="submit">Atualizar informações</button>
                 </form>
             </div>

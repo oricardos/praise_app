@@ -5,7 +5,7 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box text-center">
-                            <a href="{% url 'dashboard' %}" class="logo logo-dark">
+                            <a href="{% url 'index' %}" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="{% static 'images/logo-sm.png' %}" alt="logo-sm-dark" height="22">
                                 </span>
@@ -14,7 +14,7 @@
                                 </span>
                             </a>
 
-                            <a href="{% url 'dashboard' %}" class="logo logo-light">
+                            <a href="{% url 'index' %}" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="{% static 'images/logo-sm.png' %}" alt="logo-sm-light" height="22">
                                 </span>
@@ -141,11 +141,11 @@
                             </div>
                         </div> -->
 
-                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                        {% comment %} <div class="dropdown d-none d-lg-inline-block ms-1">
                             <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
                                 <i class="ri-fullscreen-line"></i>
                             </button>
-                        </div>
+                        </div> {% endcomment %}
 
                         <!-- <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
@@ -242,6 +242,7 @@
                             </div>
                         </div> -->
 
+
                         <div class="dropdown d-inline-block user-dropdown">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -262,11 +263,11 @@
                             </div>
                         </div>
 
-                        <div class="dropdown d-inline-block">
+                        {% comment %} <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
                                 <i class="mdi mdi-cog"></i>
                             </button>
-                        </div>
+                        </div> {% endcomment %}
 
                     </div>
                 </div>
